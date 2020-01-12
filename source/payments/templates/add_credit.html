@@ -2,9 +2,34 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load currency_filter %}
 
 {% block content %}
 
     <h4>{% trans 'Add Credits' %}</h4>
+
+    <p>
+        $1 buys you 100 credits worth of odds!
+    </p>
+
+    {% for amount in amount_list %}
+    <form action="{% url 'payments:charge' %}" method="post">
+        {% csrf_token %}
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-amount="{{ amount }}"
+            data-name="Add credits, {{user}}!"
+            data-key="{{ key }}"
+            data-description=" {{ amount }} credits for {{amount | currency }}"
+            data-locale="{{ language_code }}"
+            data-currency="USD"
+            data-label="Add {{ amount }} ({{amount|currency}})"
+            data-email="{{ email }}"
+            data-panel-label="Add credits now!"
+            amount="{{ amount }}"
+        >
+        </script>
+        <input type=hidden name=amount value="{{ amount }}"/>
+    </form>
+    {% endfor %}
 
 {% endblock %}

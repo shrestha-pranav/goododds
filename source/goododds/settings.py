@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     # Application apps
     'main',
+    'game',
     'accounts',
     'payments'
 ]
@@ -64,6 +65,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'currency_filter': 'goododds.templatetags.currency_filter',
+
+            }
+
         },
     },
 ]

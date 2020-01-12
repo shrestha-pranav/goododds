@@ -34,38 +34,44 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated %}
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'payments:add_credit' %}">{% trans 'Add Credits' %}</a>
+                    <a class="nav-link" href="{% url 'game:play' %}">{% trans 'Play good odds!' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:change_password' %}">{% trans 'Change password' %}</a>
+                    <a class="nav-link" href="{% url 'payments:add_credit' %}">{% trans 'Add credits' %}</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:change_profile' %}">{% trans 'Change profile' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:change_email' %}">{% trans 'Change email' %}</a>
+                    <a class="nav-link" href="{% url 'profile' %}">{{ request.user.username }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:log_out' %}">{% trans 'Log out' %}</a>
                 </li>
-            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'change_language' %}">{% trans 'Change language' %}</a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:log_in' %}">{% trans 'About Us' %}</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:sign_up' %}">{% trans 'Create an account' %}</a>
                 </li>
-            {% endif %}
-        </ul>
-
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'change_language' %}">{% trans 'Change language' %}</a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'change_language' %}">{% trans 'Change language' %}</a>
+                </li>
+            </ul>
+        {% endif %}
     </div>
 
 </nav>

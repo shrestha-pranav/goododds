@@ -1,12 +1,13 @@
 from django.urls import path
 
 from .views import (
-    AddCreditView
+    AddCreditView, charge
 )
 
 app_name = 'payments'
 
 urlpatterns = [
+    path('charge/', charge, name='charge'),
     path('add_credit/', AddCreditView.as_view(), name='add_credit'),
 ]
 

@@ -28,6 +28,7 @@ from .forms import (
     ResendActivationCodeForm, ResendActivationCodeViaEmailForm, ChangeProfileForm, ChangeEmailForm,
 )
 from .models import Activation
+from payments.models import Credits
 
 
 class GuestOnlyView(View):
@@ -128,6 +129,11 @@ class SignUpView(GuestOnlyView, FormView):
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
 
+            usr_credits = Credits()
+            usr_credits.user = user
+            usr_credits.num_credits = 1000
+            usr_credits.save()
+
             messages.success(request, _('You are successfully signed up!'))
 
         return redirect('index')
@@ -145,8 +151,13 @@ class ActivateView(View):
 
         # Remove the activation record
         act.delete()
+        
+        usr_credits = Credits()
+        usr_credits.user = user
+        usr_credits.num_credits = 1000
+        usr_credits.save()
 
-        messages.success(request, _('You have successfully activated your account!'))
+        messages.success(request, _('You have successfully activated your account! Also here\'s 1000 credits on us!'))
 
         return redirect('accounts:log_in')
 

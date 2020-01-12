@@ -10,6 +10,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "Add credits"
+msgstr "添加積分"
+
 msgid "Password"
 msgstr "密码"
 

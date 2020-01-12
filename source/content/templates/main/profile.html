@@ -1,0 +1,20 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+
+    <h4>{% trans 'Welcome' %}, {{ request.user.username }}</h4>
+
+    You have {{ num_credits }} credits!
+
+    <ul>
+        <li><a href="{% url 'payments:add_credit' %}">Add credits</a></li>
+        <li><a href="{% url 'accounts:change_password' %}">Change password</a></li>
+        <li><a href="{% url 'accounts:change_profile' %}">Change profile</a></li>
+        <li><a href="{% url 'accounts:change_email' %}">Change Email</a></li>
+        <li><a href="{% url 'accounts:log_out' %}">Log out</a></li>
+    </ul>
+
+{% endblock %}
