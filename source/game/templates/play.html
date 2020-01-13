@@ -8,13 +8,19 @@
 
     <h4>{% trans 'Play Good Odds' %}</h4>
 
-    {% if result_page %}
+    <div>
+        You have {{ num_credits }} credits!
+    </div>
 
+    {% if result_page %}
+        Results page
     {% endif %}
 
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
+
+        <button class="btn btn-success">{% trans 'Play your odds now!' %}</button>
     </form>
 
 {% endblock %}
